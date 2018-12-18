@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:sec="http://www.springframework.org/schema/security"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    ">
+
+    <sec:http pattern="/resources/**" security="none"/>
+
+    <sec:http pattern="/delegating">
+        <sec:headers defaults-disabled="true">
+            <sec:header ref="secureCacheControlHeadersWriter" />
+        </sec:headers>
+        <sec:form-login />
+        <sec:logout />
+    </sec:http>
+
+    <sec:http pattern="/auto-config">
+        <sec:form-login/>
+        <sec:logout/>
+    </sec:http>
+
+    <sec:authentication-manager />
+
+    <bean id="secureCacheControlHeadersWriter" class="org.springframework.security.web.header.writers.DelegatingRequestMatcherHeaderWriter">
+        <constructor-arg>
+            <bean class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+                <constructor-arg value="/delegating" />
+            </bean>
+        </constructor-arg>
+        <constructor-arg>
+            <bean class="org.springframework.security.web.header.writers.CacheControlHeadersWriter" />
+        </constructor-arg>
+    </bean>
+
+</beans>
