@@ -6,15 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.web.header.HeaderWriter;
-import org.springframework.security.web.header.writers.DelegatingRequestMatcherHeaderWriter;
 
 public class DelegatingRequestMatcherHeaderWriterWrapper implements HeaderWriter {
 
-    private final DelegatingRequestMatcherHeaderWriter headerWriter;
+    private final HeaderWriter headerWriter;
     
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     
-    public DelegatingRequestMatcherHeaderWriterWrapper(DelegatingRequestMatcherHeaderWriter headerWriter) {
+    public DelegatingRequestMatcherHeaderWriterWrapper(HeaderWriter headerWriter) {
         this.headerWriter = headerWriter;
     }
     

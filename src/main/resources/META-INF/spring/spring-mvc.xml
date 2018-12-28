@@ -26,7 +26,8 @@
         <mvc:definitions location="/WEB-INF/tiles/tiles-definitions.xml" />
     </mvc:tiles-configurer>
 
-    <mvc:view-controller path="/auto-config" view-name="cacheControl/result" />
-    <mvc:view-controller path="/delegating" view-name="cacheControl/result" />
+    <mvc:view-controller path="/auto-config" view-name="sample/result" />
+    <mvc:view-controller path="/delegating" view-name="sample/result" />
+    <mvc:view-controller path="/delegatingex" view-name="sample/result" />
 
 </beans>

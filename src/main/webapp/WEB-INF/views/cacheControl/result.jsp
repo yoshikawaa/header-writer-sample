@@ -1,1 +1,0 @@
-<h3 id="screenTitle">Result</h3>
