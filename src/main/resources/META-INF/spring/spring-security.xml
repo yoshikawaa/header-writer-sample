@@ -29,6 +29,14 @@
         <sec:logout />
     </sec:http>
 
+    <sec:http pattern="/requestmatcherex/**">
+        <sec:headers defaults-disabled="true">
+            <sec:header ref="delegatingCacheControlHeadersWriterWithRequestMatcherEx" />
+        </sec:headers>
+        <sec:form-login />
+        <sec:logout />
+    </sec:http>
+
     <sec:authentication-manager />
 
     <bean id="delegatingCacheControlHeadersWriter"
@@ -67,5 +75,18 @@
         </constructor-arg>
     </bean>
 
+    <bean id="delegatingCacheControlHeadersWriterWithRequestMatcherEx"
+        class="org.springframework.security.web.header.writers.DelegatingRequestMatcherHeaderWriter">
+        <constructor-arg>
+            <bean
+                class="com.example.AntPathRequestMatcherEx">
+                <constructor-arg value="/requestmatcherex/**" />
+            </bean>
+        </constructor-arg>
+        <constructor-arg>
+            <bean
+                class="org.springframework.security.web.header.writers.CacheControlHeadersWriter" />
+        </constructor-arg>
+    </bean>
 
 </beans>

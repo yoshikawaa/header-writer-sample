@@ -29,5 +29,6 @@
     <mvc:view-controller path="/auto-config" view-name="sample/result" />
     <mvc:view-controller path="/delegating" view-name="sample/result" />
     <mvc:view-controller path="/delegatingex" view-name="sample/result" />
+    <mvc:view-controller path="/requestmatcherex" view-name="sample/result" />
 
 </beans>
